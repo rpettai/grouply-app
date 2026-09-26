@@ -205,7 +205,9 @@
 
   .auth-brand {
     min-height: auto;
-    padding: 2.5rem 1.5rem 1.25rem;
+    align-items: center;
+    text-align: center;
+    padding: 1.75rem 1.5rem 0.85rem;
   }
 
   .auth-brand__name {
@@ -213,16 +215,26 @@
   }
 
   .auth-brand__slogan {
-    max-width: none;
+    max-width: 22ch;
     font-size: 1.25rem;
   }
 
   .auth-brand__hint {
-    display: none;
+    max-width: 32ch;
+    margin-top: 1rem;
+    font-size: 0.9rem;
   }
 
   .auth-panel {
     padding: 1.5rem 1.5rem 2.5rem;
-    max-width: none;
+    max-width: 420px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .auth-panel__title {
+    text-align: center;
   }
 }
