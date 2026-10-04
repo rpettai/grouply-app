@@ -96,7 +96,11 @@ export default function NewEventPage() {
         >
           {imageUrl ? (
             <img
-              src={(import.meta.env.VITE_API_BASE || "http://localhost:8080") + imageUrl}
+              src={
+                imageUrl.startsWith("http://") || imageUrl.startsWith("https://")
+                  ? imageUrl
+                  : (import.meta.env.VITE_API_BASE || "http://localhost:8080") + imageUrl
+              }
               alt="Event"
               style={{ maxWidth: "100%", borderRadius: 8 }}
             />
