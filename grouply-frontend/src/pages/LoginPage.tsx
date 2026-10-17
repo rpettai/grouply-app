@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login, setToken } from "../api/auth";
+import { login } from "../api/auth";
 import "./AuthPages.css";
 
 export default function LoginPage() {
@@ -16,8 +16,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await login({ email, password });
-      setToken(response.token);
+      await login({ email, password });
       navigate("/events");
     } catch {
       setError("Invalid email or password");

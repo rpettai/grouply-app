@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { register, setToken } from "../api/auth";
+import { register } from "../api/auth";
 import "./AuthPages.css";
 
 export default function RegisterPage() {
@@ -23,8 +23,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const response = await register({ name, email, password });
-      setToken(response.token);
+      await register({ name, email, password });
       navigate("/events");
     } catch {
       setError("Registration failed. Email may already be in use.");
