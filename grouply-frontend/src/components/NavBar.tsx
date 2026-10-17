@@ -55,7 +55,6 @@ export default function NavBar() {
             <div className="container">
                 <div className="navbar-content">
                     <a href="/" className="navbar-brand">
-                        <span className="brand-icon">◉</span>
                         <span className="brand-text">Grouply</span>
                     </a>
 
@@ -75,7 +74,7 @@ export default function NavBar() {
                         </a>
                         <a href="/invitations" className="nav-link">
                             Invitations
-                            {pendingCount > 0 && <span className="badge">{pendingCount}</span>}
+                            {pendingCount > 0 && <span className="nav-badge">{pendingCount}</span>}
                         </a>
 
                         <div className="navbar-actions">
