@@ -35,6 +35,15 @@ function eventImageUrl(imageUrl: string) {
   return imageUrl.startsWith("http") ? imageUrl : apiBase + imageUrl;
 }
 
+function sortEventsBySoonest(events: EventDTO[]): EventDTO[] {
+  return [...events].sort((a, b) => {
+    if (!a.dateTime && !b.dateTime) return 0;
+    if (!a.dateTime) return 1;
+    if (!b.dateTime) return -1;
+    return new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime();
+  });
+}
+
 export default function EventsPage() {
   const [events, setEvents] = useState<EventDTO[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,7 +55,7 @@ export default function EventsPage() {
     try {
       setLoading(true);
       const data = await listEvents();
-      setEvents(data);
+      setEvents(sortEventsBySoonest(data));
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -63,7 +72,11 @@ export default function EventsPage() {
   };
 
   const handleEventSaved = (updated: any) => {
-    setEvents((prev) => prev.map((e) => (e.id === updated.id ? { ...e, ...updated } : e)));
+    setEvents((prev) =>
+      sortEventsBySoonest(
+        prev.map((e) => (e.id === updated.id ? { ...e, ...updated } : e))
+      )
+    );
     setSelectedEvent(null);
   };
 
